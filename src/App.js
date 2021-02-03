@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
+import TempBar from "./Info/TempBar";
+import { WeatherContext } from "./WeatherContext";
+
+
+
 function App() {
   const [location, setLocation] = useState("")
-  const [info, setInfo] = useState()
-  const [weather, setWeather] = useState()
+  const { handleCountry } = useContext(WeatherContext)
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -11,33 +15,8 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    fetch(`https://www.metaweather.com/api/location/${info}/`)
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        // console.log("hello: ", data)
-        setWeather(data)
-      })
+    handleCountry(location)
   }
-  useEffect(() => {
-    if (location) {
-      fetch(`https://www.metaweather.com/api/location/search/?query=${location}`)
-        .then((response) => {
-          return response.json()
-        })
-        .then((data) => {
-          data.map(d => {
-            setInfo(d.woeid)
-            return d
-          })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }, [location])
   return (
     <div className="App">
       {/* Search Bar */}
@@ -45,10 +24,9 @@ function App() {
         <input type="text" value={location} onChange={handleChange} />
         <input type="submit" />
       </form>
-
-
+     { console.log("hello")}
       {/* Weather Card */}
-      {weather ? console.log(weather.consolidated_weather) : <></>}
+      <TempBar/>
     </div>
   );
 }
