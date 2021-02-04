@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import TempBar from "./Info/TempBar";
-import { WeatherContext } from "./WeatherContext";
+import HumPie from "./component/Info/HumPie";
+import TempBar from "./component/Info/TempBar";
+import { WeatherContext } from "./context/WeatherContext";
 
 
 
@@ -24,9 +25,10 @@ function App() {
         <input type="text" value={location} onChange={handleChange} />
         <input type="submit" />
       </form>
-     { console.log("hello")}
+
       {/* Weather Card */}
-      <TempBar/>
+      <TempBar />
+      <HumPie />
     </div>
   );
 }
