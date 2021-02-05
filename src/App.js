@@ -24,6 +24,7 @@ function App() {
       alert("err: please enter the valid city not country")
       clearError()
     }
+   
   }, [err])
 
   return (
