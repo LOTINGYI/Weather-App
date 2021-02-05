@@ -1,21 +1,23 @@
 import React, { useContext, useEffect } from 'react'
-import Chart from "react-apexcharts";
 import { WeatherContext } from "../../context/WeatherContext";
-
+import PieSVG from "../Pie/PieSVG";
 export default function HumPie() {
-    const { p_options, p_series } = useContext(WeatherContext)
+    const {  p_data } = useContext(WeatherContext)
 
     useEffect(() => {
 
-    }, [p_options, p_series])
+    }, [p_data])
     return (
         <div>
-            {p_options && p_series && <Chart
-                options={p_options}
-                series={p_series}
-                type="pie"
-                width="380"
-            />}
+            <div>
+                 {p_data && <PieSVG
+                    data={p_data}
+                    width={500}
+                    height={500}
+                    innerRadius={40}
+                    outerRadius={100}
+                />}
+            </div>
         </div>
     )
 }

@@ -1,22 +1,26 @@
-import React, { useContext, useEffect } from 'react'
-import Chart from "react-apexcharts";
-import { WeatherContext } from "../../context/WeatherContext";
+import React, { useEffect } from 'react'
+import Bar from '../Bar/Bar'
 
-export default function TempBar() {
-    const { b_options,b_series } = useContext(WeatherContext)
-
+export default function TempBar({ data }) {
+   
     useEffect(() => {
-
-    }, [b_options,b_series])
-
+      
+    }, [data])
     return (
         <div>
-            {b_options && b_series && <Chart
-                options={b_options}
-                series={b_series}
-                type="bar"
-                width="800"
-            />}
+         
+            <Bar
+                datas={data}
+                width={300}
+                height={200}
+                top={10}
+                bottom={20}
+                left={40}
+                right={0}
+            />
         </div>
     )
 }
+
+
+
